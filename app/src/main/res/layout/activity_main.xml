@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
+
+    <ImageView
+        android:id="@+id/iv_bluetooth"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        app:srcCompat="@drawable/bt_off"
+        android:contentDescription="TODO" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#08508A"
+        android:text="ENCENDER" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#297DC1"
+        android:text="APAGAR" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#60AEEC"
+        android:text="HACER VISIBLE" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#8BBADF"
+        android:text="DISPOSITIVOS VINCULADOS" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_devices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+    </ScrollView>
+
+</LinearLayout>
