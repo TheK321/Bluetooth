@@ -15,16 +15,16 @@
     <ImageView
         android:id="@+id/iv_bluetooth"
         android:layout_width="200sp"
-        android:layout_height="200sp"
-        app:srcCompat="@drawable/bt_off"
-        android:contentDescription="TODO" />
+        android:layout_height="150sp"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/bt_off" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="30sp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bt_on"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:backgroundTint="#08508A"
@@ -35,7 +35,7 @@
         android:layout_height="10sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bt_off"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:backgroundTint="#297DC1"
@@ -46,30 +46,26 @@
         android:layout_height="10sp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/bt_search"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:backgroundTint="#60AEEC"
-        android:text="HACER VISIBLE" />
+        android:text="BUSCAR DISPOSITIVOS" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10sp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bt_know"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:backgroundTint="#8BBADF"
         android:text="DISPOSITIVOS VINCULADOS" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30sp" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="75dp">
 
         <TextView
             android:id="@+id/tv_devices"

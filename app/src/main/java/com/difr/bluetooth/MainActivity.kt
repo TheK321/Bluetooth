@@ -29,13 +29,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.button2.setBackgroundColor(Color.parseColor("#FFC4C4C4"))
-        binding.button3.setBackgroundColor(Color.parseColor("#FF9C9B9B"))
-        binding.button4.setBackgroundColor(Color.parseColor("#FF676666"))
+        binding.btOff.setBackgroundColor(Color.parseColor("#FFC4C4C4"))
+        binding.btSearch.setBackgroundColor(Color.parseColor("#FF9C9B9B"))
+        binding.btKnow.setBackgroundColor(Color.parseColor("#FF676666"))
 
-        binding.button2.isEnabled = false
-        binding.button3.isEnabled = false
-        binding.button4.isEnabled = false
+        binding.btOff.isEnabled = false
+        binding.btSearch.isEnabled = false
+        binding.btKnow.isEnabled = false
 
         bAdapter = BluetoothAdapter.getDefaultAdapter()
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivBluetooth.setImageResource(R.drawable.bt_off)
         }
 
-        binding.button.setOnClickListener(){
+        binding.btOn.setOnClickListener(){
             if(bAdapter.isEnabled){
                 Toast.makeText(this,"ENCENDIDO",Toast.LENGTH_SHORT).show()
             }else{
@@ -53,19 +53,19 @@ class MainActivity : AppCompatActivity() {
                 startActivityForResult(intent,REQUEST_CODE_ENABLE_BT)
             }
         }
-        binding.button2.setOnClickListener(){
+        binding.btOff.setOnClickListener(){
             if(!bAdapter.isEnabled){
                 Toast.makeText(this,"APAGADO",Toast.LENGTH_SHORT).show()
             }else{
-                binding.button.setBackgroundColor(Color.parseColor("#08508A"))
-                binding.button2.setBackgroundColor(Color.parseColor("#FFC4C4C4"))
-                binding.button3.setBackgroundColor(Color.parseColor("#FF9C9B9B"))
-                binding.button4.setBackgroundColor(Color.parseColor("#FF676666"))
+                binding.btOn.setBackgroundColor(Color.parseColor("#08508A"))
+                binding.btOff.setBackgroundColor(Color.parseColor("#FFC4C4C4"))
+                binding.btSearch.setBackgroundColor(Color.parseColor("#FF9C9B9B"))
+                binding.btKnow.setBackgroundColor(Color.parseColor("#FF676666"))
 
-                binding.button.isEnabled = true
-                binding.button2.isEnabled = false
-                binding.button3.isEnabled = false
-                binding.button4.isEnabled = false
+                binding.btOn.isEnabled = true
+                binding.btOff.isEnabled = false
+                binding.btSearch.isEnabled = false
+                binding.btKnow.isEnabled = false
                 if (ActivityCompat.checkSelfPermission(
                         this,
                         Manifest.permission.BLUETOOTH_CONNECT
@@ -80,14 +80,14 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"BLUETOOTH APAGADO",Toast.LENGTH_SHORT).show()
             }
         }
-        binding.button3.setOnClickListener(){
+        binding.btSearch.setOnClickListener(){
             if(!bAdapter.isDiscovering){
                 Toast.makeText(this,"HABILITANDO VISIBILIDAD",Toast.LENGTH_SHORT).show()
                 val intent = Intent(Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE))
                 startActivityForResult(intent,REQUEST_CODE_DISCOVERABLE_BT)
             }
         }
-        binding.button4.setOnClickListener(){
+        binding.btKnow.setOnClickListener(){
             Thread.sleep(1000)
             if(bAdapter.isEnabled){
                 binding.tvDevices.text = "DISPOSITIVO VINCULADO"
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                     val dispNombre = device.name
                     val dispDireccion = device
                     binding.ivBluetooth.setImageResource(R.drawable.bt_con)
-                    binding.tvDevices.append("\nDispositivo: HONOR-BAND-MOA9X , $device")
+                    binding.tvDevices.append("\n$device , $device")
 
                 }
             }
@@ -109,15 +109,15 @@ class MainActivity : AppCompatActivity() {
                 if(resultCode == Activity.RESULT_OK){
                     binding.ivBluetooth.setImageResource(R.drawable.bt_on)
                     Toast.makeText(this,"BLUETOOTH ENCENDIDO",Toast.LENGTH_SHORT).show()
-                    binding.button.isEnabled = false
-                    binding.button2.isEnabled = true
-                    binding.button3.isEnabled = true
-                    binding.button4.isEnabled = true
+                    binding.btOn.isEnabled = false
+                    binding.btOff.isEnabled = true
+                    binding.btSearch.isEnabled = true
+                    binding.btKnow.isEnabled = true
 
-                    binding.button.setBackgroundColor(Color.parseColor("#FFE0E0E0"))
-                    binding.button2.setBackgroundColor(Color.parseColor("#297DC1"))
-                    binding.button3.setBackgroundColor(Color.parseColor("#60AEEC"))
-                    binding.button4.setBackgroundColor(Color.parseColor("#8BBADF"))
+                    binding.btOn.setBackgroundColor(Color.parseColor("#FFE0E0E0"))
+                    binding.btOff.setBackgroundColor(Color.parseColor("#297DC1"))
+                    binding.btSearch.setBackgroundColor(Color.parseColor("#60AEEC"))
+                    binding.btKnow.setBackgroundColor(Color.parseColor("#8BBADF"))
                 }else{
                     Toast.makeText(this,"BLUETOOTH NO SE PUEDE HABILITAR",Toast.LENGTH_SHORT).show()
                 }
