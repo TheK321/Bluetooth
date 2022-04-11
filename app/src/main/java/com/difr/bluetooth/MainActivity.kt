@@ -3,15 +3,23 @@ package com.difr.bluetooth
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothClass.*
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.system.Os.socket
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.difr.bluetooth.databinding.ActivityMainBinding
-import kotlin.concurrent.thread
+import java.io.IOException
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -96,8 +104,43 @@ class MainActivity : AppCompatActivity() {
                     val dispNombre = device.name
                     val dispDireccion = device
                     binding.ivBluetooth.setImageResource(R.drawable.bt_con)
-                    binding.tvDevices.append("\n$device , $device")
-
+                    binding.tvDevices.append("\n$dispNombre , $dispDireccion")
+                }
+                val device1 = dispositivos.first()
+                lateinit var mSocket : BluetoothSocket
+                if(device1.getBondState()== BluetoothDevice.BOND_BONDED){
+                    Log.d(TAG,device1.getName());
+                    try {
+                       val MYUUID : UUID = UUID.fromString("0000110a-0000-1000-8000-00805f9b34fb")
+                        mSocket  = device1.createInsecureRfcommSocketToServiceRecord(MYUUID);
+                        println("Se creó el socket")
+                    } catch ( e1 : IOException) {
+                        Log.d(TAG,"socket not created");
+                        e1.printStackTrace();
+                    }
+                    try{
+                        mSocket.connect()
+                        binding.tvConectado.text = "Dispositivo conectado\n" + device1.name
+                        println("Se conectó el dispositivo")
+                    }catch( e : IOException){
+                        try {
+                            mSocket = device1.javaClass.getMethod(
+                                "createInsecureRfcommSocket", *arrayOf<Class<*>?>(
+                                    Int::class.javaPrimitiveType
+                                )
+                            ).invoke(device1, 1) as BluetoothSocket
+                            mSocket.connect()
+                            binding.tvConectado.text = "Dispositivo conectado\n" + device1.name
+                            println("Se conectó el dispositivo")
+                            mSocket.close();
+                            Log.d(TAG,"Cannot connect");
+                            println("Se cerró el socket porque no se conectó")
+                            e.printStackTrace()
+                        } catch (e1: IOException ) {
+                            Log.d(TAG,"Socket not closed");
+                            e1.printStackTrace();
+                        }
+                    }
                 }
             }
         }
